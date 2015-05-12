@@ -11,7 +11,7 @@ class argconfig(argparse.Action):
      config_section = ['default']
      config_path = [
                      os.getcwd(),                                   # current work dir
-                     os.path.dirname( os.path.realpath(__file__)),  # rtm_py installation dir
+                     os.path.dirname( os.path.realpath(__file__)),  # installation dir
                    ]
 
      def __init__(self, **kwargs):
