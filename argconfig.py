@@ -38,6 +38,12 @@ class argconfig(argparse.Action):
 
 
      def _get_default(self):
+         """Return default value from configuration file.
+            Search for dest key in configuration sections of configuration files.
+            Read configuration file from configuration paths.
+            Return the first occurrence of dest key in the configuration files.
+            But the last occurrence of dest key in the sections of the configuration file.
+         """
 
          value_cfg = None
 
@@ -69,14 +75,19 @@ class argconfig(argparse.Action):
 
      @classmethod
      def add_path(self, path):
+         """Add path to configuration file paths.
+            Prepend path to default list.
+         """
          abs_path = os.path.normpath( os.path.abspath(path) )
          self.config_path.insert(0, abs_path)
 
      @classmethod
      def set_path(self, path):
+         """Set configuration file paths.
+            Overwrite default list.
+         """
          if not isinstance(path, list):
              path = [path]
-
          self.config_path = []
          for p in path:
              abs_path = os.path.normpath( os.path.abspath(p) )
@@ -84,29 +95,37 @@ class argconfig(argparse.Action):
 
      @classmethod
      def get_path(self):
+         """Return configuration file paths."""
          return self.config_path
 
      # file class method
 
      @classmethod
      def set_file(self, file_name):
+         """Set configuration file name.
+            Overwrite default configuration file name.
+         """
          self.config_file = file_name
 
      @classmethod
      def get_file(self):
+         """Return configuration file name."""
          return self.config_file
 
      # section class method
 
      @classmethod
      def set_section(self, section):
+         """Set section.
+            Overwrite default section.
+         """
          if not isinstance(section, list):
              section = [section]
-
          self.config_section = section
 
      @classmethod
      def get_section(self):
+         """Return section."""
          return self.config_section
 
 
