@@ -7,7 +7,7 @@ import ConfigParser
 
 class argconfig(argparse.Action):
 
-     config_file = 'argconfig.ini' 
+     config_file = 'config.ini' 
      config_section = ['default']
      config_path = [
                      os.getcwd(),                                   # current work dir
