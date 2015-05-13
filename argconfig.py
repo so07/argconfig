@@ -16,15 +16,15 @@ class argconfig(argparse.Action):
 
      def __init__(self, **kwargs):
          argparse_keys = ['option_strings', 'dest', 'const', 'default', 'type', 'choices', 'required', 'help', 'metavar']
-         super(argconfig, self).__init__( **{k: kwargs[k] for k in argparse_keys if k in kwargs.keys()} )
+         _d = {'option_strings' : None}
+         _d.update( {k: kwargs[k] for k in argparse_keys if k in kwargs.keys()} )
+         super(argconfig, self).__init__( **_d )
 
          # sections
-         self.section = self.config_section
+         self.section = []
 
-         _section = kwargs.get('section', None)
-
-         if _section:
-             self.section.append(_section)
+         if 'section' in kwargs:
+            self.section.append( kwargs['section'] )
 
          # default
          _default = self._get_default()
@@ -49,6 +49,10 @@ class argconfig(argparse.Action):
 
          update = False
 
+         _section = self.config_section
+         if hasattr(self, 'section'):
+            _section.append(self.section)
+
          # loop on config paths
          for d in self.config_path:
 
@@ -58,7 +62,7 @@ class argconfig(argparse.Action):
              cp.read( file_cfg )
 
              # loop on sections
-             for sec in self.section:
+             for sec in _section:
 
                 try:
                    value_cfg = cp.get(sec, self.dest)
