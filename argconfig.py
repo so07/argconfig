@@ -1,17 +1,20 @@
 #!/usr/bin/env python
 import os
 import sys
+import inspect
 import argparse
 import ConfigParser
 
+import_file = inspect.stack()[1][1]
 
 class argconfig(argparse.Action):
 
      config_file = 'config.ini' 
      config_section = ['default']
      config_path = [
-                     os.getcwd(),                                   # current work dir
-                     os.path.dirname( os.path.realpath(__file__)),  # installation dir
+                     os.getcwd(),                                         # current work dir
+                     os.path.dirname( os.path.realpath(__file__) ),       # installation dir
+                     os.path.dirname( os.path.realpath( import_file ) ),  # caller's dir
                    ]
 
      def __init__(self, **kwargs):
