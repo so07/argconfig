@@ -15,6 +15,7 @@ class argconfig(argparse.Action):
                    ]
 
      def __init__(self, **kwargs):
+
          argparse_keys = ['option_strings', 'dest', 'const', 'default', 'type', 'choices', 'required', 'help', 'metavar']
          _d = {'option_strings' : None}
          _d.update( {k: kwargs[k] for k in argparse_keys if k in kwargs.keys()} )
@@ -51,7 +52,7 @@ class argconfig(argparse.Action):
 
          _section = self.config_section
          if hasattr(self, 'section'):
-            _section.append(self.section)
+            _section += self.section
 
          # loop on config paths
          for d in self.config_path:
