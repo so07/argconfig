@@ -27,7 +27,7 @@ class argconfig(argparse.Action):
             self.section.append( kwargs['section'] )
 
          # default
-         _default = self._get_default()
+         _default = self.get_default()
 
          if _default:
              self.default = _default
@@ -37,7 +37,7 @@ class argconfig(argparse.Action):
          setattr(namespace, self.dest, values)
 
 
-     def _get_default(self):
+     def get_default(self):
          """Return default value from configuration file.
             Search for dest key in configuration sections of configuration files.
             Read configuration file from configuration paths.
