@@ -24,6 +24,9 @@ class argconfig(argparse.Action):
          _d.update( {k: kwargs[k] for k in argparse_keys if k in kwargs.keys()} )
          super(argconfig, self).__init__( **_d )
 
+         # key to search in config file
+         self.argkey = kwargs.get('argkey', self.dest)
+
          # sections
          self.section = []
 
@@ -67,7 +70,7 @@ class argconfig(argparse.Action):
              for sec in _section:
 
                 try:
-                   value_cfg = cp.get(sec, self.dest)
+                   value_cfg = cp.get(sec, self.argkey)
                    update = True
                 except:
                    pass
