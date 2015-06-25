@@ -60,8 +60,6 @@ class argconfig(argparse.Action):
          # loop on config paths
          for file_cfg in self.get_file_list():
 
-             file_cfg = os.path.join( d, self.config_file )
-
              cp = ConfigParser.ConfigParser(allow_no_value=True)
              cp.read( file_cfg )
 
