@@ -58,7 +58,7 @@ class argconfig(argparse.Action):
             _section += self.section
 
          # loop on config paths
-         for d in self.config_path:
+         for file_cfg in self.get_file_list():
 
              file_cfg = os.path.join( d, self.config_file )
 
@@ -119,6 +119,17 @@ class argconfig(argparse.Action):
      def get_file(self):
          """Return configuration file name."""
          return self.config_file
+
+     @classmethod
+     def get_file_list(self):
+         """Return list of configuration files."""
+         l = []
+         # loop on config paths
+         for d in self.config_path:
+            file_cfg = os.path.join( d, self.config_file )
+            if os.path.isfile(file_cfg):
+               l.append(file_cfg)
+         return l
 
      # section class method
 
