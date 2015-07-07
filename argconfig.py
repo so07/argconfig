@@ -44,7 +44,7 @@ class argconfig(argparse.Action):
          setattr(namespace, self.dest, values)
 
 
-     def get_default(self):
+     def get_default(self, _default=None):
          """Return default value from configuration file.
             Search for dest key in configuration sections of configuration files.
             Read configuration file from configuration paths.
@@ -52,7 +52,7 @@ class argconfig(argparse.Action):
             But the last occurrence of dest key in the sections of the configuration file.
          """
 
-         value_cfg = None
+         value_cfg = _default
 
          update = False
 
