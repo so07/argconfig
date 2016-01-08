@@ -5,7 +5,7 @@ import argparse
 import ConfigParser
 
 __author__  = 'Sergio Orlandini'
-__version__ = '0.2.0'
+__version__ = 'v0.2.0'
 
 try:
     import_file = inspect.stack()[1][1]
