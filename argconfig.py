@@ -5,6 +5,8 @@ import inspect
 import argparse
 import configparser
 
+version = "0.3.0"
+
 import_file = inspect.stack()[1][1]
 
 
